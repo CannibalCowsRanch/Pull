@@ -5,9 +5,9 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 1000.0
+radius = 10000.0
 
-[node name="Gravitor" type="Node2D" index="0"]
+[node name="Gravitor" type="Node2D"]
 
 script = ExtResource( 1 )
 gravity = 10000
@@ -15,11 +15,11 @@ gravity = 10000
 [node name="Area2D" type="Area2D" parent="." index="0"]
 
 input_pickable = true
-space_override = 1
+space_override = 3
 gravity_point = true
 gravity_distance_scale = 0.001
 gravity_vec = Vector2( 0, 0 )
-gravity = 1024.0
+gravity = -1024.0
 linear_damp = 0.0
 angular_damp = 0.0
 audio_bus_override = false
@@ -44,7 +44,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-color = Color( 0.898438, 0, 0.884399, 1 )
+color = Color( 0.0926514, 0.645379, 0.71875, 1 )
 _sections_unfolded = [ "Rect" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]

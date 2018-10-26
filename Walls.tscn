@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 991.235, 100 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+custom_solver_bias = 0.0
+extents = Vector2( 100, 782.266 )
+
+[node name="Walls" type="RigidBody2D"]
+
+editor/display_folded = true
+input_pickable = false
+collision_layer = 1
+collision_mask = 1
+mode = 1
+mass = 1000.0
+friction = 1.0
+bounce = 0.0
+gravity_scale = 1.0
+custom_integrator = false
+continuous_cd = 0
+contacts_reported = 0
+contact_monitor = false
+sleeping = false
+can_sleep = true
+linear_velocity = Vector2( 0, 0 )
+linear_damp = -1.0
+angular_velocity = 0.0
+angular_damp = -1.0
+
+[node name="Up" type="CollisionShape2D" parent="." index="0"]
+
+position = Vector2( 999.312, -100 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Down" type="CollisionShape2D" parent="." index="1"]
+
+position = Vector2( 995.318, 1187.33 )
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Left" type="CollisionShape2D" parent="." index="2"]
+
+position = Vector2( -100, 575.62 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+[node name="Right" type="CollisionShape2D" parent="." index="3"]
+
+position = Vector2( 2042.7, 527.686 )
+shape = SubResource( 2 )
+_sections_unfolded = [ "Transform" ]
+
+

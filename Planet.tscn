@@ -8,9 +8,10 @@
 custom_solver_bias = 0.0
 radius = 10.0
 
-[node name="Planet" type="Node2D" index="0"]
+[node name="Planet" type="Node2D"]
 
 script = ExtResource( 1 )
+thrust = 2
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." index="0"]
 
@@ -35,9 +36,33 @@ angular_damp = -1.0
 
 [node name="Gravitor" parent="RigidBody2D" index="0" instance=ExtResource( 2 )]
 
+visible = false
+gravity = 200
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="1"]
 
+modulate = Color( 0.265625, 1, 0, 1 )
 shape = SubResource( 1 )
+_sections_unfolded = [ "Visibility" ]
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.0852215, 0.757812, 0.0799255, 1 )
+_sections_unfolded = [ "Rect" ]
 
 [node name="Cooldown" type="Timer" parent="." index="1"]
 
