@@ -34,10 +34,17 @@ func _unhandled_input(event):
 		body.position = get_global_mouse_position()
 		add_child(body)
 	if event is InputEventMouseButton and event.button_index == BUTTON_WHEEL_DOWN:
-		if Engine.time_scale > -1:
-			Engine.time_scale -= 0.05
+		#if Engine.time_scale > 0:
+		Engine.time_scale -= 0.05
 		get_node("Camera2D/Label").set_text("%s" % Engine.time_scale)
+	if event is InputEventKey and event.scancode == KEY_E:
+		get_node("Camera2D").scale -= Vector2(0.1,0.1)
+		get_node("Camera2D").zoom -= Vector2(0.1,0.1)
 	if event is InputEventMouseButton and event.button_index == BUTTON_WHEEL_UP:
-		if Engine.time_scale < 1:
-			Engine.time_scale += 0.05
+		#if Engine.time_scale < 1:
+		Engine.time_scale += 0.05
 		get_node("Camera2D/Label").set_text("%s" % Engine.time_scale)
+	if event is InputEventKey and event.scancode == KEY_Q:
+		get_node("Camera2D").scale += Vector2(0.1,0.1)
+		get_node("Camera2D").zoom += Vector2(0.1,0.1)
+
