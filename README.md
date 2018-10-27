@@ -20,3 +20,5 @@ Commands:
 
 NB: if time scale is less than 0.2, hovering over a Gravitor 
 will make it follow the mouse, clicking with the left button will make it stay in position
+
+![Run](run.gif)
