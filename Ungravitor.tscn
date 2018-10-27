@@ -5,15 +5,13 @@
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
-radius = 10000.0
+radius = 327.51
 
 [node name="Gravitor" type="Node2D"]
-
 script = ExtResource( 1 )
-gravity = 10000
+gravity = 0
 
-[node name="Area2D" type="Area2D" parent="." index="0"]
-
+[node name="Area2D" type="Area2D" parent="."]
 input_pickable = true
 space_override = 3
 gravity_point = true
@@ -26,10 +24,9 @@ audio_bus_override = false
 audio_bus_name = "Master"
 _sections_unfolded = [ "Pickable" ]
 
-[node name="Sprite" type="Sprite" parent="Area2D" index="0"]
+[node name="Sprite" type="Sprite" parent="Area2D"]
 
-[node name="ColorRect" type="ColorRect" parent="Area2D/Sprite" index="0"]
-
+[node name="ColorRect" type="ColorRect" parent="Area2D/Sprite"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -47,10 +44,8 @@ size_flags_vertical = 1
 color = Color( 0.0926514, 0.645379, 0.71875, 1 )
 _sections_unfolded = [ "Rect" ]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="1"]
-
-modulate = Color( 0, 1, 0.625, 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color( 0, 1, 0.623529, 0.313726 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Visibility" ]
-
+_sections_unfolded = [ "Visibility", "shape" ]
 

@@ -1,31 +1,36 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Planet.gd" type="Script" id=1]
-[ext_resource path="res://Gravitor.tscn" type="PackedScene" id=2]
+[ext_resource path="res://RigidBody2D.gd" type="Script" id=2]
+[ext_resource path="res://Gravitor.tscn" type="PackedScene" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="PhysicsMaterial" id=1]
+
+friction = 1.0
+rough = false
+bounce = 0.0
+absorbent = false
+
+[sub_resource type="CircleShape2D" id=2]
 
 custom_solver_bias = 0.0
 radius = 10.0
 
 [node name="Planet" type="Node2D"]
-
 script = ExtResource( 1 )
 thrust = 2
 
-[node name="RigidBody2D" type="RigidBody2D" parent="." index="0"]
-
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
 mode = 0
 mass = 0.01
-friction = 1.0
-bounce = 0.0
+physics_material_override = SubResource( 1 )
 gravity_scale = 1.0
 custom_integrator = false
 continuous_cd = 0
-contacts_reported = 1
+contacts_reported = 2
 contact_monitor = true
 sleeping = false
 can_sleep = true
@@ -33,20 +38,19 @@ linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
+script = ExtResource( 2 )
+_sections_unfolded = [ "Collision" ]
 
-[node name="Gravitor" parent="RigidBody2D" index="0" instance=ExtResource( 2 )]
-
+[node name="Gravitor" parent="RigidBody2D" instance=ExtResource( 3 )]
 visible = false
-gravity = 200
+gravity = 5000
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D" index="1"]
-
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
 modulate = Color( 0.265625, 1, 0, 1 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Visibility" ]
 
-[node name="ColorRect" type="ColorRect" parent="RigidBody2D" index="2"]
-
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -64,17 +68,23 @@ size_flags_vertical = 1
 color = Color( 0.0852215, 0.757812, 0.0799255, 1 )
 _sections_unfolded = [ "Rect" ]
 
-[node name="Cooldown" type="Timer" parent="." index="1"]
-
-process_mode = 1
-wait_time = 1.0
+[node name="Cooldown" type="Timer" parent="."]
+process_mode = 0
+wait_time = 0.133957
 one_shot = false
 autostart = false
 
+[node name="Cooldown2" type="Timer" parent="."]
+process_mode = 0
+wait_time = 15.3049
+one_shot = false
+autostart = false
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -10, -10, 20, 20 )
+
 [connection signal="body_entered" from="RigidBody2D" to="." method="_on_RigidBody2D_body_entered"]
-
 [connection signal="body_exited" from="RigidBody2D" to="." method="_on_RigidBody2D_body_exited"]
-
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
-
-
+[connection signal="timeout" from="Cooldown2" to="." method="_on_Cooldown_timeout"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

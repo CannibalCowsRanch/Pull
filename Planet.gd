@@ -1,5 +1,9 @@
 extends Node2D
 export var thrust = 2
+var direction = Vector2(0,0)
+
+func _ready():
+	$RigidBody2D.apply_impulse(Vector2(0,0), direction)
 
 func _unhandled_key_input(event):
 	if event.is_action("left"):
@@ -13,14 +17,11 @@ func _unhandled_key_input(event):
 
 
 func _on_RigidBody2D_body_entered(body):
-	if body.name == "RigidBody2D":
+	if body.name == "RigidBody2D" and $Cooldown.is_stopped():
 		$Cooldown.start()
 
-
-func _on_RigidBody2D_body_exited(body):
-	if body.name == "RigidBody2D":
-		$Cooldown.stop()
-
-
 func _on_Cooldown_timeout():
-	self.queue_free()
+	queue_free()
+
+func _on_VisibilityNotifier2D_screen_exited():
+	queue_free()
